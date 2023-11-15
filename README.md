@@ -1,0 +1,2 @@
+# CalderaDynamicRupture
+Code accompanying publication
