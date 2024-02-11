@@ -6,6 +6,7 @@ idcs   = strfind(current_dir ,'/');
 above_dir = current_dir(1:idcs(end)-1); % one level above current directory
 
 addpath(fullfile(above_dir, 'src_code/.'))
+addpath(fullfile(above_dir, 'data/.'))
 
 % Load sample model
 load SampleMod.mat
