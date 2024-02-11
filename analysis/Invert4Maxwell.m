@@ -1,5 +1,4 @@
-%% Inversion procedure to fit the desired relaxation functions for Maxwell
-% rheology
+%% Inversion procedure to fit the desired relaxation functions for Maxwell rheology
 
 current_dir  = pwd;
 idcs   = strfind(current_dir ,'/');
@@ -8,17 +7,17 @@ above_dir = current_dir(1:idcs(end)-1); % one level above current directory
 addpath(fullfile(above_dir, 'src_code/.'))
 
 %% Set up target relaxation functions
-Nsteps = 1e3; % number of iterations for the inversion
+Nsteps = 3e3;    % number of iterations for the inversion
 
 % choose fixed parameters--------------------------------
-n = 3;           % number of mechanisms
+n = 9;           % number of mechanisms
 vp_0 = 1e3;      % p wave velocity at infinite frequency (place holder values)
 vs_0 = 1e3;      % s wave velocity at infinite frequency (place holder values)
 
 % desired magma material properties-----------------------------
 % best fit so far (visually)
-% 1. mu = 1e7, eta = 1e8, rho = 2700, K = 1e10 (silicic, default values)
-% 2. mu = 1e5, eta = 1e5; rho = 2200, K = 1e9; (intermediate vesicular magma)
+% 1. mu = 1e7, eta = 1e8, rho = 2700, K = 1e10 (silicic magma; default values)
+% 2. mu = 1e5, eta = 1e5; rho = 2200, K = 1e9; (intermediate vesicular magma; default values)
 
 mu = 1e7;         % shear modulus (See Okmura et al., 2010; for silicate melt without bubbles)
 eta = 1e8;        % viscosity (Okmura et al., 2010: 0.4-0.5 wt% of water at 830 degree C)
@@ -74,8 +73,8 @@ ylabel('log_{10} [Pa]')
 yyaxis right
 h3 = loglog(t./tau_M , G2(t')', 'b-','LineWidth', 2); 
 h4 = yline(G2_M, 'b--', 'LineWidth', 2);
-ylim([2.5e10, 3.5e10])
-%ylim([2.5e9, 3.5e9])
+%ylim([2.5e10, 3.5e10])
+ylim([2.5e9, 3.5e9])
 legend([h1, h2, h3, h4], 'G_1', 'G_1^{M}', 'G_2', 'G_2^{M}')
 xlabel('log_{10} t/\tau^{M}'); ylabel('log_{10} [Pa]')
 grid on;
